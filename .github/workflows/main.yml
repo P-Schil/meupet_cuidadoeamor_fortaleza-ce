@@ -31,7 +31,7 @@ jobs:
       - name: Validar build
         run: |
           test -f "$BUILD_DIR/index.html" || (echo "ERRO: index.html não encontrado" && exit 1)
-          grep -qE 'src="/src/|src="./src/|href="/src/' "$BUILD_DIR/index.html" && echo "ERRO: aponta para /src (source, não build)" && exit 1
+          grep -qE 'src="/src/|src="\./src/|href="/src/' "$BUILD_DIR/index.html" && echo "ERRO: aponta para /src (source, não build)" && exit 1
           if [ "$BUILD_DIR" = "dist" ]; then
             test -d "$BUILD_DIR/assets" || (echo "ERRO: dist/assets não encontrado" && exit 1)
             grep -q 'src="/assets/' "$BUILD_DIR/index.html" && echo "ERRO: assets absoluto, configure base: './'" && exit 1
